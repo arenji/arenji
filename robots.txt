@@ -1,0 +1,7 @@
+# robots.txt for ragnarjuelsrud.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ragnarjuelsrud.com/sitemap.xml
