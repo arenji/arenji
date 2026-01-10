@@ -4,4 +4,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://ragnarjuelsrud.com/sitemap.xml
+Sitemap: https://www.ragnarjuelsrud.com/sitemap.xml
