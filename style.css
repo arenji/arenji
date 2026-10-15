@@ -223,6 +223,23 @@ main {
     margin-bottom: 0.25rem;
 }
 
+/* Co-author links: same color as the surrounding text, underlined on hover */
+.paper-authors a,
+.cv-paper-meta a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 2px;
+}
+
+.paper-authors a:hover,
+.paper-authors a:focus,
+.cv-paper-meta a:hover,
+.cv-paper-meta a:focus {
+    color: var(--color-accent);
+    text-decoration-color: currentColor;
+}
+
 .paper-status {
     font-size: 0.9375rem;
     color: var(--color-text-muted);
@@ -529,6 +546,12 @@ footer {
         content: " (" attr(href) ")";
         font-size: 0.8em;
         color: var(--color-text-muted);
+    }
+
+    /* Don't print every co-author's homepage address */
+    .paper-authors a[href]::after,
+    .cv-paper-meta a[href]::after {
+        content: none;
     }
 }
 
