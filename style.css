@@ -198,6 +198,7 @@ main {
 
 .paper-title {
     margin-bottom: 0.25rem;
+    font-weight: 500;
 }
 
 .paper-title a {
@@ -350,6 +351,55 @@ main {
 
     .cv-entry {
         break-inside: avoid;
+    }
+}
+
+/* Tighter spacing on laptop and larger screens (phones keep the roomier layout) */
+@media (min-width: 641px) {
+    .research,
+    .cv {
+        line-height: 1.6;
+    }
+
+    .research h2,
+    .cv h2 {
+        margin-top: calc(var(--spacing-unit) * 2);
+        margin-bottom: calc(var(--spacing-unit) * 0.75);
+    }
+
+    .research section,
+    .cv-section {
+        margin-bottom: calc(var(--spacing-unit) * 1.25);
+    }
+
+    .paper {
+        margin-bottom: calc(var(--spacing-unit) * 0.9);
+        padding-bottom: calc(var(--spacing-unit) * 0.9);
+    }
+
+    .paper-authors {
+        margin-bottom: 0.1rem;
+    }
+
+    .cv-paper {
+        margin-bottom: calc(var(--spacing-unit) * 0.75);
+        padding-bottom: calc(var(--spacing-unit) * 0.75);
+    }
+
+    .cv-paper-title {
+        margin-bottom: 0.1rem;
+    }
+
+    .cv-paper-meta {
+        margin-bottom: 0.05rem;
+    }
+
+    .cv-entry {
+        margin-bottom: calc(var(--spacing-unit) * 0.5);
+    }
+
+    .cv-plain-list li {
+        margin-bottom: calc(var(--spacing-unit) * 0.3);
     }
 }
 
