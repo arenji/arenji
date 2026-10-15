@@ -330,16 +330,6 @@ main {
     padding-left: 0;
 }
 
-.cv-references {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: calc(var(--spacing-unit) * 1.5);
-}
-
-.cv-reference p {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-}
 
 @media (max-width: 640px) {
     .cv-entry {
@@ -350,10 +340,6 @@ main {
 
     .cv-entry dt {
         margin-bottom: 0.15rem;
-    }
-
-    .cv-references {
-        grid-template-columns: 1fr;
     }
 }
 
