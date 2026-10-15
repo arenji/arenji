@@ -223,13 +223,11 @@ main {
     margin-bottom: 0.25rem;
 }
 
-/* Co-author links: same color as the surrounding text, underlined on hover */
+/* Co-author links: same color as the surrounding text, no underline; blue on hover */
 .paper-authors a,
 .cv-paper-meta a {
     color: inherit;
-    text-decoration: underline;
-    text-decoration-color: var(--color-border);
-    text-underline-offset: 2px;
+    text-decoration: none;
 }
 
 .paper-authors a:hover,
@@ -237,7 +235,7 @@ main {
 .cv-paper-meta a:hover,
 .cv-paper-meta a:focus {
     color: var(--color-accent);
-    text-decoration-color: currentColor;
+    text-decoration: none;
 }
 
 .paper-status {
