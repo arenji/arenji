@@ -182,6 +182,11 @@ main {
 }
 
 /* Research page */
+.research-intro {
+    color: var(--color-text-muted);
+    margin-top: calc(var(--spacing-unit) * -0.5);
+}
+
 .research section {
     margin-bottom: calc(var(--spacing-unit) * 2);
 }
