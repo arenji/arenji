@@ -251,6 +251,23 @@ main {
     margin-bottom: 0;
 }
 
+.wp-link {
+    white-space: nowrap;
+}
+
+.wp-link a {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 2px;
+}
+
+.wp-link a:hover,
+.wp-link a:focus {
+    color: var(--color-accent);
+    text-decoration-color: currentColor;
+}
+
 .paper-status strong {
     color: var(--color-text);
     font-weight: 500;
