@@ -182,13 +182,6 @@ main {
 }
 
 /* Research page */
-.research-footnote {
-    margin-top: calc(var(--spacing-unit) * 1.5);
-    font-size: 0.8125rem;
-    line-height: 1.6;
-    color: var(--color-text-muted);
-}
-
 .research-intro {
     color: var(--color-text-muted);
     margin-top: calc(var(--spacing-unit) * -0.5);
