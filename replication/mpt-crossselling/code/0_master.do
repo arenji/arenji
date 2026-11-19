@@ -60,17 +60,22 @@ type "$root/logs/environment.txt"
 * ---- 3. Pipeline -------------------------------------------------------------
 * The pseudo data are included in data/simulated/. They are rebuilt only if
 * $regenerate == 1 (code/config.do) or if one of the ten files is missing.
-if $simulated == 1 {
-    local rebuild = $regenerate
-    foreach f in "$f_relid" "$f_prate" "$f_mpshock" "$f_bench" "$f_mshares" ///
-                 "$f_munichar" "$f_bankstr" "$f_firm_bmy" "$f_firm_n3" "$f_firm_n5" {
-        capture confirm file "`f'"
-        if _rc local rebuild = 1
+local rebuild 0
+if "$regenerate" == "1" local rebuild 1
+if "$simulated" == "1" {
+    local simfiles data_analysis_final_full policy_rate mpshocks_annual benchmark_rates
+    local simfiles `simfiles' mshares_and_pshares muni_characteristics bankstrength
+    local simfiles `simfiles' firmloans_bankmuni firmloans_banksector_nace3 firmloans_banksector_nace5
+    foreach f of local simfiles {
+        capture confirm file "$data_in/`f'.dta"
+        if _rc local rebuild 1
     }
-    if `rebuild' {
+    if `rebuild' == 1 {
         do "$root/code/1_simulate_data.do"      // pseudo data with the real panel structure
     }
-    else di "Using the pseudo data included in $data_in"
+    else {
+        di "Using the pseudo data included in $data_in"
+    }
 }
 do "$root/code/2_construct_prb_and_bmy.do"      // PrB estimation, intensive-margin predictions, BMY collapse
 do "$root/code/3_setup_bmy_panel.do"            // common analysis panel (dpr, spreads, merges, sophistication)
