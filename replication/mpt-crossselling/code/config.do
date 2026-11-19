@@ -61,23 +61,48 @@ foreach pkg in reghdfe ftools estout winsor2 binscatter {
 * Usage: write_table [model list], name(file stem) title(...) [note(...)] [texlabel(...)] [esttab options]
 * Produces $tables/<name>.tex with \begin{table} ... \end{table}, matching the
 * \input{tables/<name>.tex} lines in manuscript.tex (which defines \tablelegend).
+* The caption, label and legend are written with -file write- rather than
+* through esttab's prehead(): esttab escapes underscores (\label{tab:a\_npl})
+* and expands $-signs in the legend, both of which break LaTeX. The table body
+* is then appended by esttab.
 capture program drop write_table
 program define write_table
     syntax [anything(name=models)] , NAME(string) TITLE(string) ///
         [NOTE(string) TEXLABEL(string) *]
     if "`texlabel'" == "" local texlabel "tab:`name'"
     if "`models'"   == "" local models "_all"
-    esttab `models' using "$tables/`name'.tex", replace booktabs ///
+    tempname fh
+    file open `fh' using "$tables/`name'.tex", write text replace
+    file write `fh' "\begin{table}[p]\centering" _n
+    file write `fh' `"\caption{`macval(title)'}\label{`texlabel'}"' _n
+    file write `fh' `"\tablelegend{`macval(note)'}"' _n
+    file write `fh' "\footnotesize" _n
+    file close `fh'
+    esttab `models' using "$tables/`name'.tex", append booktabs ///
         b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) nogaps label ///
         interaction(" \$\times\$ ") nonotes noomitted nobaselevels ///
-        prehead("\begin{table}[p]\centering" ///
-                "\caption{`title'}\label{`texlabel'}" ///
-                "\tablelegend{`note'}" ///
-                "\footnotesize" ///
-                "\begin{tabular}{l*{@M}{c}}" "\toprule") ///
+        prehead("\begin{tabular}{l*{@M}{c}}" "\toprule") ///
         postfoot("\bottomrule" "\end{tabular}" "\end{table}") ///
         `options'
     di as text "  wrote $tables/`name'.tex"
+end
+
+* ---- Helper 1b: copy a LaTeX fragment line by line into an open file ---------
+* Used by the Table 1 and Table 9 wrappers, which must contain the panel rows
+* themselves: \input of a fragment that starts with \multicolumn inside a
+* tabular stops LaTeX with "Misplaced \omit".
+* Usage: append_fragment <file handle> "<path of fragment>"
+capture program drop append_fragment
+program define append_fragment
+    args handle fragment
+    tempname fr
+    file open `fr' using "`fragment'", read text
+    file read `fr' line
+    while r(eof) == 0 {
+        file write `handle' `"`macval(line)'"' _n
+        file read `fr' line
+    }
+    file close `fr'
 end
 
 * ---- Helper 2: write one summary-statistics panel (estpost tabstat) ---------

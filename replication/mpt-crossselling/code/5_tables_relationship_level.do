@@ -193,8 +193,8 @@ file write f8 "\tablelegend{One observation per bank-household relationship that
 file write f8 "\footnotesize" _n
 file write f8 "\begin{tabular}{l*{9}{c}}" _n
 file write f8 "\toprule" _n
-file write f8 "\input{tables/t8_flow_panelA.tex}" _n
-file write f8 "\input{tables/t8_flow_panelB.tex}" _n
+append_fragment f8 "$tables/t8_flow_panelA.tex"     // panel rows copied in (see config.do)
+append_fragment f8 "$tables/t8_flow_panelB.tex"
 file write f8 "\bottomrule" _n
 file write f8 "\end{tabular}" _n
 file write f8 "\end{table}" _n

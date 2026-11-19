@@ -30,7 +30,7 @@ if _rc {
 use "$work/bmy_analysis.dta", clear
 label_bmy_vars
 
-local note_fe "Bank-year fixed effects as indicated. Standard errors clustered by bank-year in parentheses. *, **, *** denote significance at the 10, 5 and 1 percent level. Effects of one standard deviation are the coefficient on the interaction with \$\Delta\$PR multiplied by the standard deviation of the respective variable in the estimation sample."
+local note_fe "Bank-year fixed effects as indicated. Standard errors clustered by bank-year in parentheses. *, **, *** denote significance at the 10, 5 and 1 percent level. Effects of one standard deviation are the coefficient on the interaction with \(\Delta\)PR multiplied by the standard deviation of the respective variable in the estimation sample."
 
 *------------------------------------------------------------------------------
 * Table 1, Panel B: bank-municipality-year summary statistics (baseline sample)

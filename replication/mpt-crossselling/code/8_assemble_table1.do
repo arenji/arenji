@@ -5,7 +5,8 @@ panels written by steps 4-7:
   Panel B  bank-municipality-year   (4_tables_pricing.do)
   Panels C1-C3  loan-growth samples (6_tables_loangrowth.do)
   Panel D  bank level               (7_figures.do)
-Output: $tables/t1_sumstats.tex  (= \input{tables/t1_sumstats.tex} in manuscript.tex)
+Output: $tables/t1_sumstats.tex  (= \input{tables/t1_sumstats.tex} in manuscript.tex),
+        a self-contained table with the panel rows copied in
 ==============================================================================*/
 
 * Helper programs and globals come from config.do; reload it if they are missing
@@ -29,7 +30,7 @@ file write f1 "\footnotesize" _n
 file write f1 "\begin{tabular}{l*{8}{r}}" _n
 file write f1 "\toprule" _n
 foreach p in t1_panelA t1_panelB t1_panelC1 t1_panelC2 t1_panelC3 t1_panelD {
-    file write f1 "\input{tables/`p'.tex}" _n
+    append_fragment f1 "$tables/`p'.tex"     // panel rows copied in (see config.do)
 }
 file write f1 "\bottomrule" _n
 file write f1 "\end{tabular}" _n
