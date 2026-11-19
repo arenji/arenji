@@ -9,4 +9,4 @@ cd "<this folder>"
 do "code/0_master.do"
 ```
 
-This runs the whole pipeline on a simulated pseudo data set with the structure of the confidential administrative data (`code/1_simulate_data.do`) and writes every table and figure of the paper to `output/`. To run on the confidential data, place the input files listed in the README in `data/raw/` and set `global simulated 0` in `code/config.do`.
+This runs the whole pipeline on the simulated pseudo data set included in `data/simulated/`, which has the structure of the confidential administrative data and can be rebuilt with `code/1_simulate_data.do` (`global regenerate 1` in `code/config.do`), and writes every table and figure of the paper to `output/`. To run on the confidential data, place the input files listed in the README in `data/raw/` and set `global simulated 0` in `code/config.do`.

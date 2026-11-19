@@ -5,10 +5,15 @@ script interactively (set $root first).
 ==============================================================================*/
 
 * ---- Data source switch ------------------------------------------------------
-* 1 = simulated pseudo data (shipped, created by 1_simulate_data.do)
+* 1 = simulated pseudo data (included in data/simulated/; created by
+*     1_simulate_data.do)
 * 0 = confidential administrative data placed in data/raw/ under the file
 *     names listed below (no other change is needed)
 global simulated 1
+
+* Pseudo data: 0 = use the files included in data/simulated/ (they are rebuilt
+* only if one of them is missing); 1 = rebuild them with 1_simulate_data.do
+global regenerate 0
 
 * ---- Folders -----------------------------------------------------------------
 if $simulated == 1  global data_in "$root/data/simulated"
